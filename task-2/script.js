@@ -32,4 +32,14 @@ let array = ['25', '32', '45', '67', '89', '76', '300'];
 let newArray = array.filter(item => {
   return item[0] == 3 || item[0] == 7;
 });
-console.log(newArray);
+
+console.log(newArray.join(','));
+
+//2 решение
+// let array = ['25', '32', '45', '67', '89', '76', '300'];
+
+// for (var i = 0; i < array.length; i++) {
+// 	if(array[i][0] == 3 || array[i][0] == 7) {
+// 		console.log(array[i]);
+//   }
+// }
