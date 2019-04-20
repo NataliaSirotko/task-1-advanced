@@ -28,8 +28,8 @@ for (key in arr) {
 //   }
 // })
 
-let array = ['25', '32', '45', '67', '89', '76'];
+let array = ['25', '32', '45', '67', '89', '76', '300'];
 let newArray = array.filter(item => {
-  return item[0] == 3 || item[0] == 7
+  return item[0] == 3 || item[0] == 7;
 });
 console.log(newArray);
