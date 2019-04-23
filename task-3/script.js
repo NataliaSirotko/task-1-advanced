@@ -31,7 +31,7 @@ function toSqrt() {
     console.log(sum);
 
     let res = Math.sqrt(sum);
-    return res;
+    console.log(res);
 }
 toSqrt();
 
@@ -47,8 +47,8 @@ toSqrt();
             let newString = s.slice(0, 50 + 1) + "...";
              s = newString;
         } 
-         return s;
+        console.log(s);
     }
     
  }
- console.log(sliceText('ll'));
+ sliceText(' fffffff ');
