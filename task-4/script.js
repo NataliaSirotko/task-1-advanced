@@ -1,19 +1,21 @@
 function getFriendlyNumbers(start, end) {
     if (typeof(start) != 'number' || typeof(end) != 'number' || start<0 || end<0 || start>end || parseInt(start) != start || parseInt(end) != end) {
         return false;
-    }
-    let res = {};
-    let newRes = [];
-    for(let j=start; j<=end; j++){
-        res[j] = getDivisorsSum(j);
-        for (let key in res){
-            if (res[key]==j && key==res[j] && res[key] !=key){
-                newRes.push([+key,j]);
-            
+    } else {
+        let res = {},
+            newRes = [];
+
+        for(let j=start; j<=end; j++){
+            res[j] = getDivisorsSum(j);
+            for (let key in res){
+                if (res[key]==j && key==res[j] && res[key] !=key){
+                    newRes.push([+key,j]);
+                
+                }
             }
         }
+        console.log(newRes);
     }
-    console.log(newRes);
 }
 // getFriendlyNumbers(1, 1000);
 
