@@ -1,6 +1,17 @@
 //1
-let date = new Date();
-console.log(date.getHours() + ':'+ date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getDate() + '.' + 0 + (date.getMonth() + 1) + '.' + date.getFullYear());
+let p = document.createElement('p');
+document.body.appendChild(p); 
+p.innerHTML = '00:00:00';
+
+window.addEventListener('load', go);
+
+function go(){
+    window.timerId = window.setInterval(timer, 500);
+}
+function timer(){
+    let date = new Date();
+    p.innerHTML = addZero(date.getHours())+':'+addZero(date.getMinutes())+':'+addZero(date.getSeconds());
+}
 //2
 function addZero(num) {
     if (num>0 && num<10) {
@@ -12,13 +23,16 @@ function addZero(num) {
         return num;
     }
 }
-console.log(addZero(date.getHours()) + ':' + addZero(date.getMinutes()) + ':' + addZero(date.getSeconds()) + ' ' + addZero(date.getDate()) + '.' + addZero(date.getMonth() + 1) + '.' + addZero(date.getFullYear()));
+let date1 = new Date();
+document.write(addZero(date1.getHours()) + ':' + addZero(date1.getMinutes()) + ':' + addZero(date1.getSeconds()) + ' ' + addZero(date1.getDate()) + '.' + addZero(date1.getMonth() + 1) + '.' + addZero(date1.getFullYear()));
+
+
 //3
 function toDay() {
     let week = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'],
         data = new Date(),
         day = data.getDay();
-    console.log(week[day]);
+    document.write('<br>' + week[day] );
 }
 toDay();
 
