@@ -39,11 +39,14 @@ startBtn.addEventListener('click', function () {
 });
 
 expensesBtn.disabled = true;
+expensesBtn.style.cursor = 'not-allowed';
 
 expensesItem.forEach(function(item) {
     item.addEventListener('input', function() {
         if (this.value != '') {
             expensesBtn.disabled = false;
+            expensesBtn.style.cursor = 'pointer';
+            expensesBtn.classList.add('active');
             console.log('active');
         }
     });
