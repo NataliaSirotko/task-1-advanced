@@ -88,7 +88,7 @@ optionalExpensesItem.forEach(function(item, i) {
 });
 
 optionalExpensesBtn.addEventListener('click', function() {
-    optionalExpensesValue.textContent = '';
+    // optionalExpensesValue.textContent = '';
 
     for (let i=0; i<optionalExpensesItem.length; i++) {
        
