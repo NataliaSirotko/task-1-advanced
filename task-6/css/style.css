@@ -54,13 +54,6 @@ a:active {
     text-align: center
 }
 
-button:hover,
-button:active {
-  letter-spacing: 1px;
-  
-}
-
-
 .main {
     display: flex;
     margin: 0 10%;
@@ -142,12 +135,25 @@ button:active {
     color: #000;
     font-weight: 100;
     font-size: 12px;
-    cursor: pointer
+    cursor: pointer;
+    transition: width ease .5s, height ease .5s, font-weight ease .1s;
 }
 .data .count-budget-btn:active,
 .data .expenses-item-btn:active,
 .data .optionalexpenses-btn:active {
     background: springgreen;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.data .count-budget-btn:hover {
+    width: 150px;
+    height: 50px;
+}
+.data .expenses-item-btn:hover,
+.data .optionalexpenses-btn:hover {
+    width: 100px;
+    height: 40px;
 }
 
 .data .optionalexpenses-item {
@@ -197,10 +203,17 @@ button:active {
     height: 45px;
     margin-top: 30px;
     font-size: 18px;
-    font-weight: 100
+    font-weight: 100;
+    transition: width ease .5s, height ease .5s, font-weight ease .1s;
 }
 .data .start:active {
     background: springgreen;
+    letter-spacing: 1px;
+    font-weight: bold;    
+}
+.data .start:hover {
+    width: 230px;
+    height: 60px;
 }
 .result {
     width: 50%;
@@ -252,7 +265,7 @@ button:active {
 .result-table .monthsavings-value,
 .result-table .optionalexpenses-value,
 .result-table .yearsavings-value {
-    color: #FF69B4;
+    color: /*#FF69B4*/ fuchsia;
     word-break: break-word
 }
 

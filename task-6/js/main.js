@@ -49,13 +49,12 @@ expensesItem.forEach(function(item) {
     });
 });
 
-expensesItem.forEach(function(item,i) {
-   
-    item.addEventListener('keyup', function() {
-        //  let a =item[i], b = item[++i];
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
+expensesItem[1].addEventListener('keyup', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
 
+expensesItem[3].addEventListener('keyup', function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
 });
 
 expensesBtn.addEventListener('click', function() {
@@ -64,7 +63,7 @@ expensesBtn.addEventListener('click', function() {
     for (let i=0; i<expensesItem.length; i++) {
         let a = expensesItem[i].value;
             b = expensesItem[++i].value;
-        if (/*typeof(a) === 'string' && typeof(b) == 'number' &&*/ typeof(a) != null && typeof(b) != null && a != '' && b != '' && a.length < 50) {
+        if (/*typeof(a) === 'string' &&*/ typeof(a) != null && typeof(b) != null && a != '' && b != '' && a.length < 50) {
             console.log("Все верно");
             appData.expenses[a] = b;
             sum += +b;
@@ -81,32 +80,21 @@ expensesBtn.addEventListener('click', function() {
 optionalExpensesItem.forEach(function(item, i) {
     optionalExpensesItem[i].addEventListener('keyup', function() {
         this.value = this.value.replace(/[^А-Яа-яЁё]/g, '');
+        
     });
 });
 
-optionalExpensesBtn.addEventListener('click', function one() {
+optionalExpensesBtn.addEventListener('click', function() {
+    optionalExpensesValue.textContent = '';
+
     for (let i=0; i<optionalExpensesItem.length; i++) {
-             
+       
             let opt = optionalExpensesItem[i].value;
             appData.optionalExpenses[i] = opt;
             optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
-            optionalExpensesItem[i].value = '';
-
     }
-    this.removeEventListener('click', one);
 
 }); 
-
-// optionalExpensesBtn.addEventListener('click', function two() {
-//     for (let i=0; i<optionalExpensesItem.length; i++) {
-//         let opt = optionalExpensesItem[i].value;
-//             appData.optionalExpenses[i] = opt;
-//     optionalExpensesItem[i].value = '';
-//     optionalExpensesValue.textContent ='';
-// }
-//     this.removeEventListener('click', two);
-//     this.addEventListener('click', one);
-// });
 
 countBtn.addEventListener('click', function() {
     if (appData.budget != undefined) {
