@@ -194,7 +194,7 @@ a:active {
     margin: 0 auto;
     border: none;
     border-radius: 2.5px;
-    background-image: linear-gradient(336deg,  #98FB98, #90EE90), linear-gradient(#fff, #fff);
+    background-image: linear-gradient(336deg,  #98FB98, /*#90EE90*/springgreen), linear-gradient(#fff, #fff);
     box-shadow: 0 2.5px 10px 0 rgba(1, 0, 42, .1);
     color: #000;
     font-weight: 100;
@@ -204,7 +204,7 @@ a:active {
     height: 45px;
     margin-top: 30px;
     font-size: 18px;
-    font-weight: 100;
+    font-weight: 500;
     transition: width ease .5s, height ease .5s, font-weight ease .1s;
 }
 .data .start:active {
