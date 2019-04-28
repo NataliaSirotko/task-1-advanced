@@ -147,12 +147,12 @@ a:active {
     font-weight: bold;
 }
 
-.data .count-budget-btn:hover {
+.data .active.count-budget-btn:hover {
     width: 150px;
     height: 50px;
 }
 .data .active.expenses-item-btn:hover,
-.data .optionalexpenses-btn:hover {
+.data .active.optionalexpenses-btn:hover {
     width: 100px;
     height: 40px;
 }

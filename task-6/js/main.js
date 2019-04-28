@@ -36,10 +36,21 @@ startBtn.addEventListener('click', function () {
     yearValue.value = new Date(Date.parse(time)).getFullYear();
     monthValue.value = new Date(Date.parse(time)).getMonth() + 1;
     dayValue.value = new Date(Date.parse(time)).getDate();
+
+    optionalExpensesBtn.disabled = false;
+    optionalExpensesBtn.style.cursor = 'pointer';
+    optionalExpensesBtn.classList.add('active');
+    countBtn.disabled = false;
+    countBtn.style.cursor = 'pointer';
+    countBtn.classList.add('active');
 });
 
 expensesBtn.disabled = true;
 expensesBtn.style.cursor = 'not-allowed';
+optionalExpensesBtn.disabled = true;
+optionalExpensesBtn.style.cursor = 'not-allowed';
+countBtn.disabled = true;
+countBtn.style.cursor = 'not-allowed';
 
 expensesItem.forEach(function(item) {
     item.addEventListener('input', function() {
@@ -88,7 +99,7 @@ optionalExpensesItem.forEach(function(item, i) {
 });
 
 optionalExpensesBtn.addEventListener('click', function() {
-    // optionalExpensesValue.textContent = '';
+    optionalExpensesValue.textContent = '';
 
     for (let i=0; i<optionalExpensesItem.length; i++) {
        
