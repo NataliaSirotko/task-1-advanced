@@ -1,8 +1,8 @@
-let ball = document.querySelector('#ball'),
+/*let ball = document.querySelector('#ball'),
     field = document.querySelector('#field');
 
       
-/*ball.addEventListener('click', function go() {
+ball.addEventListener('click', function go() {
     let floor = field.clientHeight - ball.clientHeight;
 
     animate({
@@ -28,8 +28,10 @@ function bounce(timeFraction) {
     }
 } */
 
-let square = document.querySelector('#square');
-square.addEventListener('click', function() {
+let square = document.querySelector('#square'),
+    btn = qocument.querySelector('button');
+
+btn.addEventListener('click', function() {
     animate(function(timePassed) {
         square.style.left = timePassed / 5 + 'px';
     }, 2000);
