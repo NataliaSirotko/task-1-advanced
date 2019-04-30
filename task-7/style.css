@@ -9,10 +9,15 @@
     cursor: pointer;
 }
 
-#square {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    margin-top: 100px;
-    margin-bottom: 30px;
+#bird {
+    width: 200px;
+    height: 200px;
+    margin-top: 300px;
+    margin-bottom: 50px;
+    position: relative;
+}
+button {
+    position: absolute;
+    top: 100px;
+    left: 100px;
 }
