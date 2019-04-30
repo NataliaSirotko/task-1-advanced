@@ -1,0 +1,17 @@
+#field {
+    width: 50%;
+    height: 200px;
+    border-bottom: 3px solid black;
+    position: relative;
+}
+#ball {
+    position: absolute;
+    cursor: pointer;
+}
+
+#square {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    margin-top: 100px;
+}
