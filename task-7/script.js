@@ -29,7 +29,7 @@ function bounce(timeFraction) {
 } */
 
 let square = document.querySelector('#square'),
-    btn = qocument.querySelector('button');
+    btn = document.querySelector('button');
 
 btn.addEventListener('click', function() {
     animate(function(timePassed) {
