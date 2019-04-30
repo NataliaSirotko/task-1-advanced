@@ -8,7 +8,10 @@
     position: absolute;
     cursor: pointer;
 }
-
+body {
+    background: url('back.jpg') no-repeat;
+    background-size: cover;
+}
 #bird {
     width: 200px;
     height: 200px;
@@ -16,8 +19,14 @@
     margin-bottom: 50px;
     position: relative;
 }
-button {
+input {
     position: absolute;
     top: 100px;
     left: 100px;
+    width: 100px;
+    height: 70px;
+    border-radius: 50%;
+    border: 3px solid pink;
+    background-color: pink;
+    cursor: pointer;
 }

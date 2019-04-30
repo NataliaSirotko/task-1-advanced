@@ -1,7 +1,7 @@
 
 
 let bird = document.querySelector('#bird'),
-    btn = document.querySelector('button');
+    btn = document.querySelector('input');
 
 btn.addEventListener('click', function() {
     animate(function(timePassed) {
