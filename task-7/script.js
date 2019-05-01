@@ -7,10 +7,14 @@ btn.addEventListener('click', function() {
     animate(function(timePassed) {
     bird.style.left = timePassed / 5 + 'px';
     bird.style.bottom =  timePassed / 5 + 'px';
+    
   }, 1000);
-
+  animate(go);
 });
-
+function go() {
+    bird.style.left = timePassed / 5 + 'px';
+    bird.style.top =  timePassed / 5 + 'px';
+}
 function animate(draw, duration) {
     let start = performance.now();
 
