@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', () => {
 
     'use strict';
     let tab = document.querySelectorAll('.info-header-tab'),
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    info.addEventListener('click', function(event) {
+    info.addEventListener('click', event => {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for (let i = 0; i<tab.length; i++) {
@@ -89,12 +89,12 @@ window.addEventListener('DOMContentLoaded', function() {
     let anchors = document.querySelectorAll('a[href*="#"]');
 
     for (let item of anchors) {
-        item.addEventListener('click', function(event) {
+        item.addEventListener('click', event => {
             event.preventDefault();
 
             let elemId = item.getAttribute('href');
 
-            document.querySelector('' + elemId).scrollIntoView({
+            document.querySelector(`${elemId}`).scrollIntoView({ //'' + elemId
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -108,12 +108,12 @@ window.addEventListener('DOMContentLoaded', function() {
             close = document.querySelector('.popup-close'),
             popup = document.querySelector('.popup');       
 
-        more.addEventListener('click', function() {
+        more.addEventListener('click', (e) => {
             overlay.style.display = 'block';
-            this.classList.add('more-splash');
+            e.target.classList.add('more-splash'); // с this - работает, но ругается
             document.body.style.overflow = 'hidden';
         });
-        close.addEventListener('click', function() {
+        close.addEventListener('click', () => {
             overlay.style.display = 'none';
             more.classList.remove('more-splash');
             document.body.style.overflow = '';
@@ -122,30 +122,31 @@ window.addEventListener('DOMContentLoaded', function() {
         let descriptionBtns = document.querySelectorAll('.description-btn');
 
         descriptionBtns.forEach(item => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', () => {
                 overlay.style.display = 'block';
                 this.classList.add('more-splash');
                 document.body.style.overflow = 'hidden';
             });
-            close.addEventListener('click', function() {
+            close.addEventListener('click', () => {
                 item.classList.remove('more-splash');
             });
         });
         //это замена forEach для IE
         for (let i=0; i<descriptionBtns.length; i++) {
-            descriptionBtns[i].addEventListener('click',  function() {
+            descriptionBtns[i].addEventListener('click', () => {
                 overlay.style.display = 'block';
                 this.classList.add('more-splash');
                 document.body.style.overflow = 'hidden';
             });
-            close.addEventListener('click', function() {
-                descriptionBtns.classList.remove('more-splash');
+            close.addEventListener('click', () => {
+                descriptionBtns[i].classList.remove('more-splash');
             });
         }
     
 
     // let isChrome = /Chrome/.test(navigator.userAgent);
     // let isSafari = /Safari/.test(navigator.userAgent);
+    //    let isMoz = /Firefox/.test(navigator.userAgent);
         let isIe = /InternetExplorer/.test(navigator.userAgent),
             edge = /Edge/.test(navigator.userAgent);
 
@@ -154,7 +155,7 @@ window.addEventListener('DOMContentLoaded', function() {
             console.log('done');
         } else {
             if (!(isIe || edge)) {  
-                more.addEventListener('click', function() {                  
+                more.addEventListener('click', () => {                  
                     overlay.classList.remove('fade');
                     overlay.animate([
                         {width: '0'},
@@ -170,7 +171,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 });
 
                 descriptionBtns.forEach(item => {
-                    item.addEventListener('click', function() {
+                    item.addEventListener('click', () => {
                         overlay.classList.remove('fade');
                         overlay.animate([
                             {width: '0'},
@@ -191,19 +192,80 @@ window.addEventListener('DOMContentLoaded', function() {
 
     getModal();
 
+    //Form
+    function sendForm() {
+        let message = {
+            loading: 'Загружается..',
+            success: 'Спасибо, скоро мы с вами свяжемся',
+            failure: 'Что-то пошло не так...'
+        };
     
+        let form = document.getElementsByTagName('form');
     
+        for (let j=0; j< form.length; j++) {
     
-    
-   
-    
+            let input = form[j].getElementsByTagName('input'),
+                statusMessage = document.createElement('div');
 
-    // if (!Array.prototype.forEach) {
-    //     Array.prototype.forEach = function(fn, scope) {
-    //         for(var i = 0, len = this.length; i < len; ++i) {
-    //             fn.call(scope, this[i], i, this);
-    //         }
-    //     }
-    // }
-  
+            statusMessage.classList.add('status');
+    
+            let inputTel = form[j].querySelector('[type="tel"]');
+    
+            inputTel.addEventListener('keyup', () => {
+                inputTel.value = inputTel.value.replace(/[^0-9\+]/g, '');
+            });
+    
+            form[j].addEventListener('submit', (event) => {
+                event.preventDefault();
+                form[j].appendChild(statusMessage);
+    
+                let request = new XMLHttpRequest();
+                request.open('POST', 'server.php');
+                //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    
+                let formData = new FormData(form[j]);
+
+                let obj = {};
+                formData.forEach((value, key) => {
+                    obj[key] = value;
+                });
+                let json = JSON.stringify(obj);
+
+                //request.send(formData);
+                request.send(json);
+
+                let popup = document.querySelector('.popup-form'),
+                    img = document.createElement('img');                  
+    
+                request.addEventListener('readystatechange', () => {
+                        if (request.readyState < 4) {
+                        //statusMessage.innerHTML = message.loading;
+                        form[j].style.display = 'none';          
+                        img.src = "/icons/ajax-loader.gif";
+                        img.style.margin = "10px 240px 0";
+                        popup.appendChild(img);
+                        console.log('отправляется');                  
+                    } else if (request.readyState === 4 && request.status == 200) {
+                        //statusMessage.innerHTML = message.success;                      
+                        img.src = "/icons/herbal.png";
+                        img.style.width = "150px";
+                        console.log('отправлено');
+                    } else {
+                        //statusMessage.innerHTML = message.failure;
+                        img.src = "/icons/fish.psd";
+                        img.style.width = "150px";
+                        console.log('ошибка');
+                    }                    
+                });
+    
+                for (let i=0; i<input.length; i++) {
+                    input[i].value = '';
+                }
+            });
+        }
+    }
+
+    sendForm();  
+    
 });
