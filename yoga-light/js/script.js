@@ -129,7 +129,6 @@ window.addEventListener('DOMContentLoaded', () => {
             });
             close.addEventListener('click', () => {
                 item.classList.remove('more-splash');
-                form[j].removeChild(statusMessage);
             });
         });
         //это замена forEach для IE
@@ -265,15 +264,17 @@ window.addEventListener('DOMContentLoaded', () => {
                     input[i].value = '';
                 }
 
+                let more = document.querySelector('.more');
+
+                more.addEventListener('click', function() {
+                    form[j].style.display = 'block';
+                    popup.removeChild(img);
+                    //form[j].removeChild(statusMessage);
+                }); 
+
             });
        
-            let more = document.querySelector('.more');
-
-            more.addEventListener('click', function() {
-                form[j].style.display = 'block';
-                popup.removeChild(img);
-                //form[j].removeChild(statusMessage);
-            });   
+              
         }   
     }
 
