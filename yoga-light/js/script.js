@@ -106,7 +106,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let more = document.querySelector('.more'),
             overlay = document.querySelector('.overlay'),
             close = document.querySelector('.popup-close'),
-            popup = document.querySelector('.popup');       
+            popup = document.querySelector('.popup');
 
         more.addEventListener('click', (e) => {
             overlay.style.display = 'block';
@@ -114,7 +114,7 @@ window.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'hidden';
         });
         close.addEventListener('click', () => {
-            overlay.style.display = 'none';
+            overlay.style.display = 'none'; 
             more.classList.remove('more-splash');
             document.body.style.overflow = '';
         });
@@ -129,6 +129,7 @@ window.addEventListener('DOMContentLoaded', () => {
             });
             close.addEventListener('click', () => {
                 item.classList.remove('more-splash');
+                form[j].removeChild(statusMessage);
             });
         });
         //это замена forEach для IE
@@ -214,11 +215,15 @@ window.addEventListener('DOMContentLoaded', () => {
             inputTel.addEventListener('keyup', () => {
                 inputTel.value = inputTel.value.replace(/[^0-9\+]/g, '');
             });
-    
+
+            let popup = document.querySelector('.popup-form'),
+                img = document.createElement('img'); 
+
             form[j].addEventListener('submit', (event) => {
                 event.preventDefault();
                 form[j].appendChild(statusMessage);
-    
+                popup.appendChild(img);
+
                 let request = new XMLHttpRequest();
                 request.open('POST', 'server.php');
                 //request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -233,18 +238,15 @@ window.addEventListener('DOMContentLoaded', () => {
                 let json = JSON.stringify(obj);
 
                 //request.send(formData);
-                request.send(json);
-
-                let popup = document.querySelector('.popup-form'),
-                    img = document.createElement('img');                  
+                request.send(json);          
     
-                request.addEventListener('readystatechange', () => {
+                request.addEventListener('readystatechange', function func() {
                         if (request.readyState < 4) {
                         //statusMessage.innerHTML = message.loading;
                         form[j].style.display = 'none';          
                         img.src = "/icons/ajax-loader.gif";
                         img.style.margin = "10px 240px 0";
-                        popup.appendChild(img);
+                        
                         console.log('отправляется');                  
                     } else if (request.readyState === 4 && request.status == 200) {
                         //statusMessage.innerHTML = message.success;                      
@@ -256,14 +258,23 @@ window.addEventListener('DOMContentLoaded', () => {
                         img.src = "/icons/fish.psd";
                         img.style.width = "150px";
                         console.log('ошибка');
-                    }                    
+                    }                           
                 });
-    
+
                 for (let i=0; i<input.length; i++) {
                     input[i].value = '';
                 }
+
             });
-        }
+       
+            let more = document.querySelector('.more');
+
+            more.addEventListener('click', function() {
+                form[j].style.display = 'block';
+                popup.removeChild(img);
+                //form[j].removeChild(statusMessage);
+            });   
+        }   
     }
 
     sendForm();  
