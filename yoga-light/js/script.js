@@ -257,20 +257,21 @@ window.addEventListener('DOMContentLoaded', () => {
                         img.src = "/icons/fish.psd";
                         img.style.width = "150px";
                         console.log('ошибка');
-                    }                           
+                    }    
+                    let more = document.querySelector('.more');
+
+                    more.addEventListener('click', function() {
+                        form[j].style.display = 'block';
+                        popup.removeChild(img);
+                        //form[j].removeChild(statusMessage);
+                    });                      
                 });
 
                 for (let i=0; i<input.length; i++) {
                     input[i].value = '';
                 }
 
-                let more = document.querySelector('.more');
-
-                more.addEventListener('click', function() {
-                    form[j].style.display = 'block';
-                    popup.removeChild(img);
-                    //form[j].removeChild(statusMessage);
-                }); 
+                 
 
             });
        
