@@ -24,11 +24,13 @@ let inputRub = document.getElementById('rub'),
                 request.send();
             });
         }
-        
-        getData()
-            .then(() => {
+
+         getData()
+            .then(function() {
                 console.log('good');
+               //response = JSON.parse(request.response);
                 let data = JSON.parse(request.response);
+                
                 inputUsd.value = inputRub.value / data.usd;               
             })
             .catch(() => {

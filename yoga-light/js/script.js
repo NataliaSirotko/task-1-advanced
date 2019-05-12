@@ -217,7 +217,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             let popup = document.querySelector('.popup-form'),
                 img = document.createElement('img'); 
-
+                
             form[j].addEventListener('submit', (event) => {
                 event.preventDefault();
                 form[j].appendChild(statusMessage);
@@ -240,12 +240,13 @@ window.addEventListener('DOMContentLoaded', () => {
                 request.send(json);          
     
                 request.addEventListener('readystatechange', function func() {
+                    //popup.removeChild(img);
                         if (request.readyState < 4) {
                         //statusMessage.innerHTML = message.loading;
-                        form[j].style.display = 'none';          
+                        form[j].style.display = 'none';
+                        img.style.display = "block";
                         img.src = "/icons/ajax-loader.gif";
-                        img.style.margin = "10px 240px 0";
-                        
+                        img.style.margin = "10px 240px 0";                       
                         console.log('отправляется');                  
                     } else if (request.readyState === 4 && request.status == 200) {
                         //statusMessage.innerHTML = message.success;                      
@@ -259,22 +260,17 @@ window.addEventListener('DOMContentLoaded', () => {
                         console.log('ошибка');
                     }    
                     let more = document.querySelector('.more');
-
                     more.addEventListener('click', function() {
                         form[j].style.display = 'block';
-                        popup.removeChild(img);
+                        img.style.display = "none";                        
                         //form[j].removeChild(statusMessage);
-                    });                      
+                    });
                 });
 
                 for (let i=0; i<input.length; i++) {
                     input[i].value = '';
                 }
-
-                 
-
-            });
-       
+            });     
               
         }   
     }
