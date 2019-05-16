@@ -1,26 +1,20 @@
-$(document).ready(function() {
-    // Animation
-    function go(sel) {
-        sel.on('click', function() {
-            $('.overlay').fadeTo('slow', 1);
-            $('.modal').animate({
-                opacity: 'show',
-                height: 'show'
-            }, {
-                duration: 3000,
-                specialEasing: {
-                    opacity: 'swing',
-                    height: 'swing'
-                }
-            });
+$(document).ready(() => {
+    // Animation mmodal
+    $('.col-sm-3:eq(1), .col-sm-3:eq(2), [href="#sheldure"]').on('click', () => {
+        $('.overlay').fadeTo('slow', 1);
+        $('.modal').animate({
+            opacity: 'show',
+            height: 'show'
+        }, {
+            duration: 3000,
+            specialEasing: {
+                opacity: 'swing',
+                height: 'swing'
+            }
         });
-    }
+    });
 
-    go($('.col-sm-3:eq(1)'));
-    go($('.col-sm-3:eq(2)'));
-    go($('[href="#sheldure"]'));
-
-    $('.close').on('click', function() {
+    $('.close').on('click', () => {
         $('.overlay').fadeOut('slow', 0);
         $('.modal').animate({
             opacity: 'hide',
@@ -57,7 +51,7 @@ $(document).ready(function() {
         });
         
     });
-
+});
     // $.ajax({
     //     type: 'POST',
     //     url: 'server.php',
@@ -74,6 +68,3 @@ $(document).ready(function() {
     //     }
     // });
     
-
-    
-});
