@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    // Animation
     function go(sel) {
         sel.on('click', function() {
             $('.overlay').fadeTo('slow', 1);
@@ -33,18 +33,32 @@ $(document).ready(function() {
             }
         });
     });
+    // Ajax
+    $('form').on('submit', () => {
+        let request = $.ajax({
+            type: 'POST',
+            url: 'server.php',
+            async: true,
+            data: {name: $('input:eq(0)').val(), phone: $('input:eq(1)').val(), mail: $('input:eq(2)').val(), message: $('textarea').val()},
+            dataType: "html"
+        });
 
-    $('form').ajax({
-        type: 'POST',
-        url: 'server.php',
-        async: true,
-        data: 'name=name&name=phone&name=mail&name=message', 
-        success: function() {
-            alert('done');
-        }
+        request.done(function () {
+            console.log('done');
+            $('.modal').slideUp('slow');
+            $('.thanks').slideDown('slow');
+            $('.thanks').html('Done');
+        });
+
+        request.fail(function (jqXHR, textStatus) {
+            console.log('Request failed: ' + textStatus);
+            $('.thanks').slideDown('slow');
+            $('.thanks').html('Request failed: ' + textStatus);
+        });
+        
     });
 
-    // $('form').ajax({
+    // $.ajax({
     //     type: 'POST',
     //     url: 'server.php',
     //     async: true,
