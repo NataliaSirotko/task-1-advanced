@@ -34,23 +34,31 @@ $(document).ready(function() {
         });
     });
 
-    
-
     $('form').ajax({
         type: 'POST',
         url: 'server.php',
         async: true,
-        data: 'name=name&name=phone&name=mail&name=message',
-        loading: function() {
-            console.log('load');
-        },
-        failure: function() {
-            console.log('что-то пошло не так..');
-        },
+        data: 'name=name&name=phone&name=mail&name=message', 
         success: function() {
-            alert('5');
+            alert('done');
         }
     });
+
+    // $('form').ajax({
+    //     type: 'POST',
+    //     url: 'server.php',
+    //     async: true,
+    //     data: 'name=name&name=phone&name=mail&name=message',
+    //     loading: function() {
+    //         console.log('load');
+    //     },
+    //     failure: function() {
+    //         console.log('что-то пошло не так..');
+    //     },
+    //     success: function() {
+    //         alert('5');
+    //     }
+    // });
     
 
     
