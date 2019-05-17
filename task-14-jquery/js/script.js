@@ -40,7 +40,12 @@ $(document).ready(() => {
                 console.log('done');
                 $('.modal').slideUp('slow');
                 $('.thanks').slideDown('slow');
-                $('.thanks').html('Done');
+                $('.thanks').html($('.thanks p, .thanks button'));
+
+                $('.thanks button').on('click', () => {
+                    $('.thanks').slideUp('slow');
+                    $('.overlay').fadeOut('slow', 0);            
+                });
             },
             error: function () {
                 console.log('Request failed: ' + textStatus);
