@@ -28,43 +28,48 @@ $(document).ready(() => {
         });
     });
     // Ajax
-    $('form').on('submit', () => {
-        let request = $.ajax({
+    $('form').on('submit', function(event) {
+        event.preventDefault();
+        $.ajax({
             type: 'POST',
             url: 'server.php',
-            async: true,
             data: {name: $('input:eq(0)').val(), phone: $('input:eq(1)').val(), mail: $('input:eq(2)').val(), message: $('textarea').val()},
-            dataType: "html"
-        });
+            dataType: "html",
 
-        request.done(function () {
-            console.log('done');
-            $('.modal').slideUp('slow');
-            $('.thanks').slideDown('slow');
-            $('.thanks').html('Done');
-        });
-
-        request.fail(function (jqXHR, textStatus) {
-            console.log('Request failed: ' + textStatus);
-            $('.thanks').slideDown('slow');
-            $('.thanks').html('Request failed: ' + textStatus);
+            success: function () {
+                console.log('done');
+                $('.modal').slideUp('slow');
+                $('.thanks').slideDown('slow');
+                $('.thanks').html('Done');
+            },
+            error: function () {
+                console.log('Request failed: ' + textStatus);
+                $('.thanks').slideDown('slow');
+                $('.thanks').html('Request failed: ' + textStatus);
+            }
         });
         
     });
 });
-    // $.ajax({
-    //     type: 'POST',
-    //     url: 'server.php',
-    //     async: true,
-    //     data: 'name=name&name=phone&name=mail&name=message',
-    //     loading: function() {
-    //         console.log('load');
-    //     },
-    //     failure: function() {
-    //         console.log('что-то пошло не так..');
-    //     },
-    //     success: function() {
-    //         alert('5');
-    //     }
-    // });
+
+// let request = $.ajax({
+//     type: 'POST',
+//     url: 'server.php',
+//     async: true,
+//     data: {name: $('input:eq(0)').val(), phone: $('input:eq(1)').val(), mail: $('input:eq(2)').val(), message: $('textarea').val()},
+//     dataType: "html"
+// });
+
+// request.done(function () {
+//     console.log('done');
+//     $('.modal').slideUp('slow');
+//     $('.thanks').slideDown('slow');
+//     $('.thanks').html('Done');
+// });
+
+// request.fail(function (jqXHR, textStatus) {
+//     console.log('Request failed: ' + textStatus);
+//     $('.thanks').slideDown('slow');
+//     $('.thanks').html('Request failed: ' + textStatus);
+// });
     
